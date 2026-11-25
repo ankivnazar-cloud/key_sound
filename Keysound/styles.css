@@ -1,0 +1,124 @@
+:root {
+    --background: #17191c;
+    --surface: #25282d;
+    --surface-hover: #30343a;
+    --accent: #78b9ff;
+    --accent-soft: #9bcaff;
+    --text: #dceaf7;
+    --muted: #9da6af;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 48px 24px;
+    background: linear-gradient(145deg, #111315 0%, var(--background) 55%, #202329 100%);
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+}
+
+header,
+main,
+body > section {
+    width: min(960px, 100%);
+    margin-inline: auto;
+}
+
+header {
+    margin-bottom: 28px;
+}
+
+h1,
+h2,
+p,
+label {
+    color: var(--accent);
+}
+
+h1 {
+    margin: 0 0 10px;
+    font-size: clamp(2rem, 7vw, 4.5rem);
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    margin: 32px 0 18px;
+    font-size: 1.35rem;
+}
+
+p,
+label,
+input,
+button {
+    font-size: 1rem;
+}
+
+p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+main,
+body > section {
+    padding: 28px;
+    border: 1px solid rgba(120, 185, 255, 0.12);
+    border-radius: 20px;
+    background: rgba(37, 40, 45, 0.78);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(12px);
+}
+
+body > section {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    border: 1px solid rgba(120, 185, 255, 0.24);
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+button {
+    min-height: 46px;
+    margin: 6px;
+    padding: 12px 18px;
+    background: var(--surface);
+    color: var(--accent);
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: var(--surface-hover);
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(120, 185, 255, 0.28);
+    outline-offset: 2px;
+}
+
+input {
+    margin: 8px 0;
+    padding: 12px 14px;
+    background: #1d2024;
+    color: var(--text);
+}
+
+input::placeholder {
+    color: var(--muted);
+}
