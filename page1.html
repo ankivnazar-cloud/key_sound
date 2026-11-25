@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keysound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to keysound</h1>
+        <p>This is website where you can find your or other keyboards and listen to their sounds.</p>
+    </header>
+    <main>
+        <section id="keyboard-search">
+           <form id="search-form">
+               <label for="keyboard">Find your keyboard:</label>
+               <input type="text" id="keyboard" name="keyboard" placeholder="Enter keyboard name" autocomplete="off">
+               <button type="submit">Search</button>
+           </form>
+           <div id="search-results" aria-live="polite"></div>
+        </section>
+    </main>
+    <section>
+         <h2>Popular Keyboards</h2>
+         <a href="page2.html"><button type="button">Apple</button></a>
+         <a href="page3.html"><button type="button">Logitech</button></a>
+         <a href="page4.html"><button type="button">Razer</button></a>
+         <a href="page5.html"><button type="button">HyperX</button></a>
+         <a href="page6.html"><button type="button">Corsair</button></a>
+         <a href="page7.html"><button type="button">Epomaker</button></a>
+         <a href="page8.html"><button type="button">Keychron</button></a>
+         <a href="page9.html"><button type="button">Hator</button></a>
+         <a href="page10.html"><button type="button">Bloody</button></a>
+         <a href="page11.html"><button type="button">Ajazz</button></a>
+         <a href="page12.html"><button type="button">Aula</button></a>
+    </section>
+    <script>
+        const keyboards = [
+            ["Apple Magic Keyboard", "page2.html"], ["Apple Magic Keyboard with Numeric Keypad", "page2.html"],
+            ["Apple Magic Keyboard with Touch ID", "page2.html"], ["Apple Magic Keyboard for iPad Pro", "page2.html"], ["Apple Magic Keyboard for iPad Air", "page2.html"],
+            ["Logitech MX Keys", "page3.html"], ["Logitech G915", "page3.html"], ["Logitech MX Mechanical", "page3.html"], ["Logitech G715", "page3.html"], ["Logitech G Pro X TKL", "page3.html"],
+            ["Razer Huntsman Mini", "page4.html"], ["Razer BlackWidow V3", "page4.html"], ["Razer Huntsman V3 Pro", "page4.html"], ["Razer DeathStalker V2", "page4.html"], ["Razer BlackWidow V4", "page4.html"],
+            ["HyperX Alloy Origins", "page5.html"], ["HyperX Alloy FPS RGB", "page5.html"], ["HyperX Alloy Origins Core", "page5.html"], ["HyperX Alloy 60", "page5.html"], ["HyperX Alloy Elite 2", "page5.html"],
+            ["Corsair K70 RGB", "page6.html"], ["Corsair K95 RGB", "page6.html"], ["Corsair K70 MAX", "page6.html"], ["Corsair K65 Plus", "page6.html"], ["Corsair K100 RGB", "page6.html"],
+            ["Epomaker TH66", "page7.html"], ["Epomaker TH80", "page7.html"], ["Epomaker TH80 Pro", "page7.html"], ["Epomaker RT100", "page7.html"], ["Epomaker CIDOO V75", "page7.html"],
+            ["Keychron V1 Ultra", "page8.html"], ["Keychron K2", "page8.html"], ["Keychron Q1 Max", "page8.html"], ["Keychron Q2 Pro", "page8.html"], ["Keychron V2", "page8.html"],
+            ["Hator Rockfall 3", "page9.html"], ["Hator Skyfall TKL", "page9.html"], ["Hator Gravity TKL", "page9.html"], ["Hator Rockfall 2", "page9.html"], ["Hator Atra", "page9.html"],
+            ["Bloody B760", "page10.html"], ["Bloody B820R", "page10.html"], ["Bloody B930", "page10.html"], ["Bloody B540L", "page10.html"], ["Bloody B885N", "page10.html"],
+            ["Ajazz AK820", "page11.html"], ["Ajazz AKS068", "page11.html"], ["Ajazz AK820 Pro", "page11.html"], ["Ajazz AK680", "page11.html"], ["Ajazz AK35I", "page11.html"],
+            ["Aula F75", "page12.html"], ["Aula F87", "page12.html"], ["Aula F99", "page12.html"], ["Aula F75 Pro", "page12.html"], ["Aula WIN60", "page12.html"]
+        ];
+
+        const form = document.querySelector("#search-form");
+        const input = document.querySelector("#keyboard");
+        const results = document.querySelector("#search-results");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const query = input.value.trim();
+            if (!query) {
+                results.innerHTML = "<p>Please enter a keyboard model.</p>";
+                return;
+            }
+
+            const normalizedQuery = query.toLowerCase();
+            const matches = keyboards.filter(function (keyboard) {
+                return keyboard[0].toLowerCase().includes(normalizedQuery);
+            });
+
+            results.innerHTML = "";
+
+            matches.forEach(function (keyboard) {
+                const link = document.createElement("a");
+                link.href = keyboard[1];
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = keyboard[0];
+                link.appendChild(button);
+                results.appendChild(link);
+            });
+
+            if (matches.length === 0) {
+                const customTitle = document.createElement("h2");
+                customTitle.textContent = "Your keyboard";
+
+                const customButton = document.createElement("button");
+                customButton.type = "button";
+                customButton.dataset.sound = "assets/audio/cherry-mx-brown.ogg";
+                customButton.textContent = query;
+
+                let audio = null;
+                customButton.addEventListener("click", function () {
+                    if (!audio) {
+                        audio = new Audio(customButton.dataset.sound);
+                    }
+                    if (audio.paused) {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+
+                results.append(customTitle, customButton);
+            }
+        });
+    </script>
+</body>
+</html>

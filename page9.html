@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hator - Keysound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hator</h1>
+    </header>
+    <main>
+        <a href="page1.html"><button type="button">Back to Keysound</button></a>
+        <h2>Hator keyboards</h2>
+        <button type="button" data-sound="assets/audio/cherry-mx-red.ogg">Hator Rockfall 3</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-brown.ogg">Hator Skyfall TKL</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-blue.ogg">Hator Gravity TKL</button>
+        <button type="button" data-sound="assets/audio/eg-oreo.ogg">Hator Rockfall 2</button>
+        <button type="button" data-sound="assets/audio/topre-purple.ogg">Hator Atra</button>
+        <script>
+            document.querySelectorAll("[data-sound]").forEach(function (button) {
+                var audio = new Audio(button.dataset.sound);
+                button.addEventListener("click", function () {
+                    if (audio.paused) {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+</html>

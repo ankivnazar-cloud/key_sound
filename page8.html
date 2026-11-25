@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keychron - Keysound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Keychron</h1>
+    </header>
+    <main>
+        <a href="page1.html"><button type="button">Back to Keysound</button></a>
+        <h2>Keychron keyboards</h2>
+        <button type="button" data-sound="assets/audio/keychron-v1-ultra.wav">Keychron V1 Ultra</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-red.ogg">Keychron K2</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-red.ogg">Keychron Q1 Max</button>
+        <button type="button" data-sound="assets/audio/topre-purple.ogg">Keychron Q2 Pro</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-blue.ogg">Keychron V2</button>
+        <script>
+            document.querySelectorAll("[data-sound]").forEach(function (button) {
+                var audio = new Audio(button.dataset.sound);
+                button.addEventListener("click", function () {
+                    if (audio.paused) {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+</html>

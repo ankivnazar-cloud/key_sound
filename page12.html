@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula - Keysound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Aula</h1>
+    </header>
+    <main>
+        <a href="page1.html"><button type="button">Back to Keysound</button></a>
+        <h2>Aula keyboards</h2>
+        <button type="button" data-sound="assets/audio/cherry-mx-red.ogg">Aula F75</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-blue.ogg">Aula F87</button>
+        <button type="button" data-sound="assets/audio/eg-oreo.ogg">Aula F99</button>
+        <button type="button" data-sound="assets/audio/crystal-purple.ogg">Aula F75 Pro</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-brown.ogg">Aula WIN60</button>
+        <script>
+            document.querySelectorAll("[data-sound]").forEach(function (button) {
+                var audio = new Audio(button.dataset.sound);
+                button.addEventListener("click", function () {
+                    if (audio.paused) {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+</html>

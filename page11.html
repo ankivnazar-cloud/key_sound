@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajazz - Keysound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ajazz</h1>
+    </header>
+    <main>
+        <a href="page1.html"><button type="button">Back to Keysound</button></a>
+        <h2>Ajazz keyboards</h2>
+        <button type="button" data-sound="assets/audio/cherry-mx-blue.ogg">Ajazz AK820</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-red.ogg">Ajazz AKS068</button>
+        <button type="button" data-sound="assets/audio/topre-purple.ogg">Ajazz AK820 Pro</button>
+        <button type="button" data-sound="assets/audio/cherry-mx-brown.ogg">Ajazz AK680</button>
+        <button type="button" data-sound="assets/audio/crystal-purple.ogg">Ajazz AK35I</button>
+        <script>
+            document.querySelectorAll("[data-sound]").forEach(function (button) {
+                var audio = new Audio(button.dataset.sound);
+                button.addEventListener("click", function () {
+                    if (audio.paused) {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+</html>
